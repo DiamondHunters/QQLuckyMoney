@@ -87,7 +87,7 @@ public class Main implements IXposedHookLoadPackage {
                         requestUrl.append("&groupid=" + (istroop == 0 ? selfuin : frienduin));
                         requestUrl.append("&grouptype=" + getGroupType());
                         requestUrl.append("&groupuin=" + getGroupuin(messageType));
-                        requestUrl.append("&channel=" + getObjectField(mQQWalletRedPacketMsg, "redChannel"));
+                        requestUrl.append("&channel=" + getObjectField(mQQWalletRedPacketMsg, "channelId"));
                         requestUrl.append("&authkey=" + authkey);
                         requestUrl.append("&agreement=0");
 
