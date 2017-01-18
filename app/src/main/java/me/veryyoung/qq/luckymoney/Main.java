@@ -95,7 +95,23 @@ public class Main implements IXposedHookLoadPackage {
                         requestUrl.append("&channel=" + getObjectField(mQQWalletRedPacketMsg, "channelId"));
                         requestUrl.append("&authkey=" + authkey);
                         requestUrl.append("&agreement=0");
+                        /*私聊示例数据
+                        msguid: 72057594868700925     //没用
+                        senderuin: 87****123          //发送者QQ号
+                        frienduin: 87****123          （区别在群消息情况下讨论）
+                        selfuin: 16****5257           //接收者QQ号
 
+
+                        未加密内容：
+                        &uin=16****5257               //接收者QQ号
+                        &listid=10000436011701186500116779825000        //红包ID
+                        &name=                                          //空即可？
+                        &answer=                                        //同上
+                        &groupid=16****5257 				//迷 私聊消息为接收者QQ号
+                        &grouptype=0					//私聊消息为0
+                        &groupuin=87****123				//私聊消息为发送者QQ号
+                        &authkey=040ef3c00460b3a324e392a573f32714o2	//红包Hash
+                        */
                         Class qqplugin = findClass(VersionParam.QQPluginClass, walletClassLoader);
 
                         int random = Math.abs(new Random().nextInt()) % 16;
