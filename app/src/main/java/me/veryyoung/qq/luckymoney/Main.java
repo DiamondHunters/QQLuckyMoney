@@ -75,10 +75,15 @@ public class Main implements IXposedHookLoadPackage {
                         }
 
                         Object mQQWalletRedPacketMsg = getObjectField(param.thisObject, "mQQWalletRedPacketMsg");
+                        //红包ID
                         String redPacketId = getObjectField(mQQWalletRedPacketMsg, "redPacketId").toString();
+                        //红包Hash
                         String authkey = (String) getObjectField(mQQWalletRedPacketMsg, "authkey");
-
-                        ClassLoader walletClassLoader = (ClassLoader) callStaticMethod(findClass("com.tencent.mobileqq.pluginsdk.PluginStatic", loadPackageParam.classLoader), "getOrCreateClassLoader", globalContext, "qwallet_plugin.apk");
+                        //酷Q数据 [CQ:hb,id=10000438011701183500109727426500,hash=9087f4ba0f5e711cb05c62c97cd30fcaeq,title=恭喜发财]
+                        
+                        //加载QwalletPlugin
+                        ClaassLoader walletClassLoader = (ClassLoader) callStaticMethod(findClass("com.tencent.mobileqq.pluginsdk.PluginStatic", loadPackageParam.classLoader), "getOrCreateClassLoader", globalContext, "qwallet_plugin.apk");
+                        //构建提交数据
                         StringBuffer requestUrl = new StringBuffer();
                         requestUrl.append("&uin=" + selfuin);
                         requestUrl.append("&listid=" + redPacketId);
